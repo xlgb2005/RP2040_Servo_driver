@@ -26,8 +26,8 @@ void setup()
 {
     PWM_Instance = new RP2040_PWM(pwmpin,freq, 50);
     
-    initflag = digitalRead(3);
-    
+    //initflag = digitalRead(3);
+    initflag = true;
     if(initflag){
         for (float ceta = minduty; ceta < maxduty; ceta=ceta+0.1)
            {
