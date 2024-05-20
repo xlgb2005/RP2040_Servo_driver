@@ -26,9 +26,7 @@ void setup()
 {
     PWM_Instance = new RP2040_PWM(pwmpin,freq, 50);
     
-    gpio_init(3);
-    gpio_init_dir(3,GPIO_IN);
-    initflag = gpio_get(3);
+    initflag = digitalRead(3);
     
     if(initflag){
         for (float ceta = minduty; ceta < maxduty; ceta=ceta+0.1)
