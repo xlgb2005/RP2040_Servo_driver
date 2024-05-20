@@ -1,4 +1,3 @@
-#include <Arduino.h>
 #include "RP2040_PWM.h"
 #include "OneButton.h"
 
@@ -21,14 +20,17 @@ void up();
 void down();
 void longup();
 void longdown();
-void initflag();
+void initflagfuc();
 
 void setup()
 {
     PWM_Instance = new RP2040_PWM(pwmpin,freq, 50);
-    butup.attachPressStart(initflag);
-    butup.tick();
-    if(!initflag){
+    
+    gpio_init(3);
+    gpio_init_dir(3,GPIO_IN);
+    initflag = gpio_get(3);
+    
+    if(initflag){
         for (float ceta = minduty; ceta < maxduty; ceta=ceta+0.1)
            {
                 PWM_Instance->setPWM(pwmpin,freq,ceta);
@@ -95,6 +97,6 @@ void longdown(){
     PWM_Instance->setPWM(pwmpin,freq,targetduty);
 }
 
-void initflag(){
+void initflagfuc(){
     initflag=true;
     }
