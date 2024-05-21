@@ -27,8 +27,8 @@ void setup()
 {
     PWM_Instance = new RP2040_PWM(pwmpin,freq, 50);
     
-    //initflag = digitalRead(3);
-    initflag = true;
+    initflag = digitalRead(3);
+    //initflag = true;
     if(initflag){
         for (float ceta = minduty; ceta < maxduty; ceta=ceta+0.1)
            {
@@ -44,9 +44,9 @@ void setup()
     butup.reset();
     
     butup.attachClick(up);
-    //butup.attachDuringLongPress(longup);
+    butup.attachDuringLongPress(longup);
     butdown.attachClick(down);
-    //butdown.attachDuringLongPress(longdown);
+    butdown.attachDuringLongPress(longdown);
 }
 
 void loop()
