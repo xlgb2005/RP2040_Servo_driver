@@ -20,3 +20,13 @@ jobs:
 
       - name: Build PlatformIO Project
         run: pio run
+        
+      - name: Create Release and Upload Release Asset
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: Autobuild ${{ github.ref }}
+        name: Release ${{ github.ref }}
+        body: TODO New Release.
+        draft: false
+        prerelease: false
+        files: .pio/build/pico/firmware.uf2
