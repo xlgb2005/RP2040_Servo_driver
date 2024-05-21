@@ -1,4 +1,5 @@
-#include "RP2040_PWM.h"
+#include <Arduino.h>
+#include "RP2040_PWM_fix.h"
 #include "OneButton.h"
 
 RP2040_PWM* PWM_Instance;
