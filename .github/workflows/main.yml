@@ -21,8 +21,8 @@ jobs:
       - name: Build PlatformIO Project
         run: pio run
         
-      - name: Create Release
-        uses: ncipollo/release-action@v1.14.0
+      - name: Create Release 
+        uses: softprops/action-gh-release@v1
         with:
-          bodyFile: ".pio/build/pico/firmware.uf2"
-            
+          files:  .pio/build/pico/firmware.uf2
+          draft: true     
