@@ -78,7 +78,7 @@ void down(){
 void longup(){
     if (butup.isLongPressed())
         {
-            if (targetduty>minduty)
+            if (targetduty<maxduty)
             {
                 targetduty++;
             }
