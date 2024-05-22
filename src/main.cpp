@@ -12,6 +12,8 @@ float targetduty=30;
 float stepdegrees=(83.2-16.70)/180*10;
 
 bool initflag=false;
+bool memoryflag=false;
+int memorytime=0;
 float i=20;
 
 OneButton butup(3);
@@ -21,7 +23,7 @@ void up();
 void down();
 void longup();
 void longdown();
-void initflagfuc();
+void memorydegrees();
 
 void setup()
 {
@@ -58,7 +60,7 @@ void loop()
     
     
    
-    
+    if(millis()-memorytime>1000){memorytime=0;}
 }
 
 void up(){
@@ -66,6 +68,7 @@ void up(){
         {
             targetduty++;
         }
+    memorytime=millis();
     }
 
 void down(){
@@ -73,6 +76,7 @@ void down(){
         {
             targetduty--;
         }
+    memorytime=millis();
     }
 
 void longup(){
@@ -80,22 +84,23 @@ void longup(){
         {
             if (targetduty<maxduty)
             {
-                targetduty++;
+                if(millis()%100<10){targetduty++;}
             }
         }
     PWM_Instance->setPWM(pwmpin,freq,targetduty);
 }
+
 void longdown(){
     if (butdown.isLongPressed())
         {
             if (targetduty>minduty)
                 {
-                    targetduty--;
+                    if(millis()%100<10){targetduty--;}
                 }
         }
     PWM_Instance->setPWM(pwmpin,freq,targetduty);
 }
 
-void initflagfuc(){
-    initflag=true;
-    }
+void memorydegrees(){
+    //wait to do;
+}
