@@ -13,9 +13,9 @@ float stepdegrees=(83.2-16.70)/180*10;
 
 bool initflag=false;
 bool memoryflag=false;
-int memorytime=0;
-int cyclememory=0;
-int cycletime=7;
+long unsigned int memorytime=0;
+long unsigned int cyclememory=0;
+long unsigned int cycletime=7;
 bool incycle=false;
 float i=20;
 
@@ -97,7 +97,7 @@ void longup(){
 void longdown(){
     if (butdown.isLongPressed())
         {
-            if(!incycle){cyclememory=millis();incycle=true}
+            if(!incycle){cyclememory=millis();incycle=true;}
             if (targetduty>minduty)
                 {
                     if(millis()-cyclememory==cycletime){targetduty--;cyclememory=millis();}
