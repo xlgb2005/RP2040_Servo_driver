@@ -14,6 +14,8 @@ float stepdegrees=(83.2-16.70)/180*10;
 bool initflag=false;
 bool memoryflag=false;
 int memorytime=0;
+int cyclememory=0;
+int cycletime=7;
 float i=20;
 
 OneButton butup(3);
@@ -59,7 +61,7 @@ void loop()
     
     
     
-   
+    cyclememory=millis();
     if(millis()-memorytime>1000){memorytime=0;}
 }
 
@@ -84,7 +86,7 @@ void longup(){
         {
             if (targetduty<maxduty)
             {
-                if(millis()%100<10){targetduty++;}
+                if(millis()-cyclememory==cycletime){targetduty++;cyclememory=millis();}
             }
         }
     PWM_Instance->setPWM(pwmpin,freq,targetduty);
@@ -95,7 +97,7 @@ void longdown(){
         {
             if (targetduty>minduty)
                 {
-                    if(millis()%100<10){targetduty--;}
+                    if(millis()-cyclememory==cycletime){targetduty--;cyclememory=millis();}
                 }
         }
     PWM_Instance->setPWM(pwmpin,freq,targetduty);
