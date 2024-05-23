@@ -16,6 +16,7 @@ bool memoryflag=false;
 int memorytime=0;
 int cyclememory=0;
 int cycletime=7;
+bool incycle=false;
 float i=20;
 
 OneButton butup(3);
@@ -61,7 +62,7 @@ void loop()
     
     
     
-    cyclememory=millis();
+    
     if(millis()-memorytime>1000){memorytime=0;}
 }
 
@@ -84,6 +85,7 @@ void down(){
 void longup(){
     if (butup.isLongPressed())
         {
+            if(!incycle){cyclememory=millis();incycle=true;}
             if (targetduty<maxduty)
             {
                 if(millis()-cyclememory==cycletime){targetduty++;cyclememory=millis();}
@@ -95,6 +97,7 @@ void longup(){
 void longdown(){
     if (butdown.isLongPressed())
         {
+            if(!incycle){cyclememory=millis();incycle=true}
             if (targetduty>minduty)
                 {
                     if(millis()-cyclememory==cycletime){targetduty--;cyclememory=millis();}
