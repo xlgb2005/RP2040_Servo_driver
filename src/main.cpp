@@ -62,7 +62,7 @@ void loop()
     
     
     
-    
+    incycle=false;
     if(millis()-memorytime>1000){memorytime=0;}
 }
 
